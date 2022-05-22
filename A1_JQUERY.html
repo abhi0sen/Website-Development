@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Achievements</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  <style>
+    * {
+      margin: 0 5px;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: rgb(20, 20, 32);
+      padding: 20px;
+      height: 25px;
+      padding-left: 230px;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .navbar a {
+      /* padding-top: 100px; */
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      /* flex-direction: right; */
+    }
+
+    #home {
+      top: 0;
+      left: 49px;
+      text-decoration: none;
+      position: absolute;
+      flex: right;
+      font-size: 30px;
+      color: white;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      display: none;
+      background-color: rgb(20, 20, 32);
+    }
+
+    #home:hover {
+      text-decoration: none;
+    }
+
+    .fsec {
+      /* align-items: center; */
+      text-align: center;
+      background-color: rgb(143, 149, 172);
+    }
+
+    .achieved {
+      border-style: solid;
+      border-color: rgba(233, 232, 232, 0.585);
+      text-align: center;
+      padding: 30px;
+      display: none;
+    }
+
+    .heads {
+      align-items: center;
+      padding: 20px 0;
+      font-size: 50px;
+      text-decoration: underline;
+      /* text-decoration-style: double; */
+      /* display: none; */
+    }
+
+    .form {
+      max-width: 500px;
+      margin: 22px auto;
+    }
+
+    .form input {
+      margin: 10px;
+      padding: 5px 5px;
+      width: 100%;
+      font-size: 19px;
+      border: 2px solid grey;
+      border-radius: 5px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .contact {
+      padding: 20px;
+      margin-bottom: 30px;
+      /* width: 100%; */
+      background-color: rgb(255, 255, 255);
+      /* color: white; */
+      padding-bottom: 10px;
+    }
+
+    .contact img {
+      margin-top: 13px;
+      width: 20px;
+    }
+
+    .about {
+      padding: 20px;
+
+    }
+
+    .info {
+      width: 60%;
+      display: none;
+    }
+
+    .img {
+      width: 20%;
+      /* display: none; */
+    }
+
+    /* .img img {
+  width: 100%;
+  height: auto;
+} */
+    .parts {
+      width: 30.33%;
+      padding: 20px;
+      border-style: solid;
+      border-color: rgb(211, 208, 208);
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    .big-text {
+      font-size: 100px;
+      /* text-decoration: bold; */
+    }
+
+    .normal-text {
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+    }
+
+    .ab-parts {
+      padding: 40px;
+      display: flex;
+    }
+
+    .normal-text:hover {
+      text-decoration: underline;
+    }
+
+    .life {
+      padding: 30px;
+      background-color: rgb(241, 239, 239);
+      display: none;
+    }
+
+    .disp-flex {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+
+    .gallery {
+      margin: 8px;
+      /* border: 1px solid #ccc; */
+      /* overflow: hidden; */
+      /* float: left; */
+      width: 230px;
+    }
+
+    .gallery:hover {
+      border: 1px solid #777;
+    }
+
+    .gallery img {
+      height: 200px;
+    }
+
+    .gallery img,
+    .img img {
+      margin-top: 5px;
+      cursor: zoom-in;
+      width: 95%;
+      /* height: auto; */
+      border-radius: 5%;
+    }
+
+    .img img {
+      cursor: default;
+      border-radius: 5%;
+      display: none;
+    }
+
+    .desc {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .table {
+      height: 300px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-left: 20%;
+      border: 3px solid rgb(235, 233, 233);
+    }
+
+    .table td {
+      border-bottom: 1px solid rgb(214, 210, 210);
+
+    }
+
+    table,
+    td,
+    tr {
+      padding: 5px;
+      padding: 5px 20px;
+      text-align: left;
+    }
+
+    .details {
+      position: absolute;
+      font-size: 10px;
+      background-color: rgba(96, 96, 91, 0.9);
+      color: white;
+      padding: 10px;
+      display: none;
+      top: 50px;
+    }
+
+    .banner img {
+      position: absolute;
+      /* top: 0px; */
+    }
+  </style>
+
+  <script>
+    $(document).ready(function () {
+      console.log("document loaded");
+    });
+
+    $(window).on("load", function () {
+      console.log("window loaded");
+    });
+
+    $(document).ready(function () {
+      $("#l-skill").click(function () {
+
+        $("#l-skill").css({ "text-decoration": "underline" });
+        $("#tech").css({ "text-decoration": "none" });
+        $("#comp").css({ "text-decoration": "none" });
+        $("#TC").hide("explode");
+        $("#CP").hide("explode");
+        $("#LSC").slideToggle(1500);
+      });
+      $("#tech").click(function () {
+        $("#l-skill").css({ "text-decoration": "none" });
+        $("#tech").css({ "text-decoration": "underline" });
+        $("#comp").css({ "text-decoration": "none" });
+        $("#LSC").hide("explode");
+        $("#CP").hide("explode");
+        $("#TC").slideToggle(1500);
+      });
+      $("#comp").click(function () {
+        $("#l-skill").css({ "text-decoration": "none" });
+        $("#tech").css({ "text-decoration": "none" });
+        $("#comp").css({ "text-decoration": "underline" });
+        $("#LSC").hide("explode");
+        $("#TC").hide("explode");
+        $("#CP").slideToggle(1500);
+      });
+    });
+
+    $(document).ready(function () {
+      $("#abt").mouseenter(function () {
+        $("#abt-info").fadeIn(1000).css({ "display": "inline-block", "left": "-=100px" });
+      });
+      $("#abt").mouseleave(function () {
+        $("#abt-info").fadeOut().css({ "display": "none", "left": "+=100px" });
+      });
+
+      $("#cont").mouseenter(function () {
+        $("#cont-info").fadeIn(1000).css({ "display": "inline-block", "left": "-=50px" });
+      });
+      $("#cont").mouseleave(function () {
+        $("#cont-info").fadeOut().css({ "display": "none", "left": "+=50px" });
+      });
+    });
+
+    $(window).scroll(function () {
+      $(".achieved").fadeIn(2000);
+    });
+
+    $(window).scroll(function () {
+      $("#info").fadeIn(2000).css({ "background-color": "lavender" });
+      $(".img img").fadeIn(4000);
+    });
+
+    // $(document).ready(function () {
+    //   $(".gallery img").click(function () {
+    //     $(this).css({ "background-color": "grey", "z-index": "9999", "cursor": "zoom-out", "position" : "absolute"}).animate({
+    //       height: '700px',
+    //       width: '1000px',
+
+    //     }, 1000).click(function () {
+    //       $(this).css({ "background-color": "grey", "z-index": "0", "cursor": "zoom-in", "position" : "static"}).animate({
+    //         position: 'static',
+    //         height: '150px',
+    //         width: '95%',            
+    //       }, 1000);
+    //     });
+    //   });
+    // });
+
+    $(document).ready(function () {
+      $(".parts").mouseenter(function () {
+        $(this).css({ "background-color": "lavender" });
+      });
+      $(".parts").mouseleave(function () {
+        $(this).css({ "background-color": "white" })
+      })
+      $(".anim").mouseenter(function () {
+        $(this).css({ "color": "pink" });
+      });
+      $(".anim").mouseleave(function () {
+        $(this).css({ "color": "white" });
+      });
+
+      $("#home").mousedown(function () {
+        $(this).css({ "color": "pink" });
+      });
+      $("#home").mouseup(function () {
+        $(this).css({ "color": "white" });
+      });
+
+      $(".anim").mousedown(function () {
+        $(this).css({ "font-size": "-=2px" });
+      });
+
+      $(".anim").mouseup(function () {
+        $(this).css({ "font-size": "+=2px" });
+      });
+    });
+
+    $(window).ready(function () {
+      $("#home").show("explode");
+    });
+
+  </script>
+
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <a id="home" href="#home">Abhisar Sen</a>
+    <a href="#about" id="abt" class="anim">About Me</a>
+    <span class="details" id="abt-info">Details about Abhisar Sen</span>
+    <a href="#contact" id="cont" class="anim">Contact</a>
+    <span class="details" id="cont-info">Contact Abhisar</span>
+  </nav>
+
+  <section class="fsec">
+    <div claas="banner">
+      <!-- <img src="../img/slide2.jpeg" alt=""> -->
+      <!-- <img src="../img/slide3.jpeg" alt=""> -->
+      <img src="../img/slide1.jpeg" alt="">
+    </div>
+  </section>
+
+  <section class="about text-center" id="about">
+    <div class="heads">&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp; </div>
+    <div class="disp-flex">
+      <div class="info" id="info">
+
+        <table class="table">
+          <tr>
+            <td>
+              Name &nbsp;&nbsp;&nbsp;
+            </td>
+            <td>
+              Abhisar Sen
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Age &nbsp;&nbsp;&nbsp;
+            </td>
+            <td>
+              18 Yrs
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Habbits &nbsp;&nbsp;&nbsp;
+            </td>
+            <td>
+              Reading Books, Playing Football
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Education &nbsp;&nbsp;&nbsp;
+            </td>
+            <td>
+              10<sup>th</sup>,
+              12<sup>th</sup>, JEE Mains, KVPY
+            </td>
+          </tr>
+          <tr>
+            <td>Currently Persuing</td>
+            <td>Computer Science and Engineering<br>
+              <center>-2<sup>nd</sup>Yr</center>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="img">
+        <img src="../img/prof.jpeg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <section class="achieved">
+    <div class="heads">&nbsp;&nbsp;&nbsp;Achievements&nbsp;&nbsp;&nbsp;</div>
+    <div class="ab-parts">
+      <div class="parts" id="life-sc">
+        <p class="big-text">5+</p>
+        <a class="normal-text" id="l-skill" href="#LSC">
+          <p>Life Skill Courses</p>
+        </a>
+      </div>
+      <div class="parts" id="tech-c">
+        <p class="big-text">10+</p>
+        <a class="normal-text" id="tech" href="#TC">
+          <p>Tech Courses</p>
+        </a>
+      </div>
+      <div class="parts" id="comp-p">
+        <p class="big-text">10+</p>
+        <a class="normal-text" id="comp" href="#CP">
+          <p>Competition Participated</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="life text-center" id="LSC">
+    <div class="heads">&nbsp;&nbsp;&nbsp;Life Skill Courses&nbsp;&nbsp;&nbsp;</div>
+    <div class="disp-flex">
+      <div class="gallery">
+        <img id="images" src="../img/lsc1.png" alt="" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+
+      <div class="gallery">
+        <img id="images" src="../img/lsc2.png" alt="Forest" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+
+      <div class="gallery">
+        <img id="images" src="../img/lsc3.png" alt="Northern Lights" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+
+      <div class="gallery">
+        <img id="images" src="../img/lsc4.png" alt="Mountains" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+    </div>
+  </section>
+  <section class="life text-center" id="TC">
+    <div class="heads">&nbsp;&nbsp;&nbsp;Tech Courses&nbsp;&nbsp;&nbsp;</div>
+    <div class="disp-flex">
+      <div class="gallery">
+        <img id="images" src="../img/tc1.jpg" alt="Cinque Terre" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+
+      <div class="gallery">
+        <img id="images" src="../img/tc3.png" alt="Forest" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+
+      <div class="gallery">
+        <img id="images" src="../img/tc2.jpg" alt="Northern Lights" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+
+      <div class="gallery">
+        <img id="images" src="../img/tc4.png" alt="Mountains" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+    </div>
+  </section>
+  <section class="life text-center" id="CP">
+    <div class="heads">&nbsp;&nbsp;&nbsp;Competition Participated&nbsp;&nbsp;&nbsp;</div>
+    <div class="disp-flex">
+      <div class="gallery">
+        <img id="images" src="../img/cp1.jpg" alt="Cinque Terre" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+
+      <div class="gallery">
+        <img id="images" src="../img/cp2.jpg" alt="Forest" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+
+      <div class="gallery">
+        <img id="images" src="../img/cp3.jpg" alt="Northern Lights" width="600" height="400">
+        <div class="desc">Handwriting Competition</div>
+      </div>
+
+      <div class="gallery">
+        <img id="images" src="../img/cp4.jpg" alt="Mountains" width="600" height="400">
+        <div class="desc">Add a description of the image here</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <center>
+      <div class="heads">&nbsp;&nbsp;&nbsp;Contact Details&nbsp;&nbsp;&nbsp;</div>
+      <table>
+        <tr>
+          <td>
+            Contact No &nbsp;-&nbsp;&nbsp;
+          </td>
+          <td>
+            8989998040
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+          </td>
+          <td>
+            abhisar.sen@avantika.edu.in
+          </td>
+        </tr>
+      </table>
+      <b>
+        <p style="font-size: 20px; padding-top: 20px;">Follow on</h3>
+      </b><br>
+      <a href="www.facebook.com"><img src="../img/facebook.png" alt="facebook"></a>
+      <a href="www.instagram.com"><img src="../img/instagram.png" alt="instagram"></a>
+      <br>
+
+    </center>
+  </section>
+  <div style="background-color: rgba(27, 25, 25, 0.585); color: white;">
+    <center>
+      <em>
+        <p style="font-size: 12px;">COPYRIGHT © 2022 Abhisar's Achievements</p>
+      </em>
+    </center>
+  </div>
+</body>
+
+</html>
